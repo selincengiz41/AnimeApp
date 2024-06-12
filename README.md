@@ -1,6 +1,6 @@
 # <p align="center"> Compose AnimeApp 🎥 </p>
 
-Anime ve TV serilerinin tutkunları için tasarlanan bu uygulama, kullanıcıların en sevdikleri içerikleri keşfetmelerine, detaylı bilgilere ulaşmalarına ve doğrudan izleme sayfasına geçiş yapmalarına olanak tanır. TMDB (The Movie Database) servisinin zengin veri tabanından faydalanarak en güncel ve popüler içerikleri sunar. Kullanıcı dostu arayüzü ve geniş içerik yelpazesi ile bu uygulama, anime ve TV serisi severler için vazgeçilmez bir araç haline gelmeyi hedefliyor.
+Designed for fans of anime and TV series, this application allows users to discover their favorite content, access detailed information, and directly navigate to the watch page. Leveraging the rich database of TMDB (The Movie Database), it offers the latest and most popular content. With its user-friendly interface and extensive content range, this app aims to be an indispensable tool for anime and TV series enthusiasts.
 
 <!-- Screenshots -->
 ## 📸 Screenshots
