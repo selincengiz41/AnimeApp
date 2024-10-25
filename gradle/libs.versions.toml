@@ -22,6 +22,7 @@ pagingRuntime = "3.1.1"
 retrofit = "2.9.0"
 roomCompiler = "2.6.1"
 roomRuntime = "2.6.1"
+ktlint = "12.1.1"
 
 [libraries]
 accompanist-systemuicontroller = { module = "com.google.accompanist:accompanist-systemuicontroller", version.ref = "accompanistSystemuicontroller" }
@@ -61,4 +62,5 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 hiltAndroid={ id="com.google.dagger.hilt.android", version.ref="hiltAndroid"}
 org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin"}
+ktlint = { id = "org.jlleitschuh.gradle.ktlint",  version.ref = "ktlint"}
 
