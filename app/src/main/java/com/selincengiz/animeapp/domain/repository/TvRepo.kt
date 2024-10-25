@@ -16,6 +16,11 @@ interface TvRepo {
 
     suspend fun getDetailMovie(id: Int): TvDetailUI
 
+
+
+
+
+
     fun getDiscoverFantasyTv(): Flow<PagingData<TvUI>>
 
     fun getSeekTv(query: String): Flow<PagingData<TvUI>>
