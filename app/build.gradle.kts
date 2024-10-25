@@ -29,7 +29,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -52,7 +52,7 @@ android {
         }
     }
     ktlint {
-        version = "0.43.0" // Ktlint versiyonunu belirle
+        version = "1.4.0" // Ktlint versiyonunu belirle
         android = true // Android projeleri için
         outputColorName = "RED" // Çıktı rengini ayarla
     }
@@ -76,42 +76,41 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    //Splash Api
-    implementation (libs.androidx.core.splashscreen)
+    // Splash Api
+    implementation(libs.androidx.core.splashscreen)
 
-    //Compose Navigation
-    implementation (libs.androidx.navigation.compose)
+    // Compose Navigation
+    implementation(libs.androidx.navigation.compose)
 
-    //Dagger Hilt
-    implementation (libs.hilt.android)
-    kapt (libs.hilt.compiler)
-    implementation (libs.androidx.hilt.navigation.compose)
+    // Dagger Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
+    // Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
-    //Retrofit
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
-
-    //Coil
+    // Coil
     implementation(libs.coil.compose)
 
-    //Datastore
-    implementation (libs.androidx.datastore.preferences)
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
 
-    //Compose Foundation
-    implementation (libs.androidx.foundation)
+    // Compose Foundation
+    implementation(libs.androidx.foundation)
 
-    //Accompanist
-    implementation (libs.accompanist.systemuicontroller)
+    // Accompanist
+    implementation(libs.accompanist.systemuicontroller)
 
-    //Paging 3
+    // Paging 3
 
-    implementation (libs.androidx.paging.runtime)
-    implementation (libs.androidx.paging.compose)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
 
-    //Room
+    // Room
 
-    implementation (libs.androidx.room.runtime)
-    kapt (libs.androidx.room.compiler)
-    implementation (libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 }
