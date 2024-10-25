@@ -15,6 +15,12 @@ interface TvRepo {
     fun getPopularTv(): Flow<PagingData<TvUI>>
 
 
+
+
+
+
+
+
     suspend fun getDetailTv(id: Int): TvDetailUI
 
     suspend fun getDetailMovie(id: Int): TvDetailUI
