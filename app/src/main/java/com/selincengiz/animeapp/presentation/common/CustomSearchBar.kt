@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.presentation.common
 
-
 import android.graphics.Paint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -48,11 +47,12 @@ fun CustomSearchBar(
     readOnly: Boolean,
     onClick: (() -> Unit)? = null,
     onValueChange: (String) -> Unit,
-    onSearch: () -> Unit
+    onSearch: () -> Unit,
 ) {
-    val interactionSource = remember {
-        MutableInteractionSource()
-    }
+    val interactionSource =
+        remember {
+            MutableInteractionSource()
+        }
 
     val isClicked = interactionSource.collectIsPressedAsState().value
     LaunchedEffect(key1 = isClicked) {
@@ -61,39 +61,42 @@ fun CustomSearchBar(
         }
     }
     Box(
-        modifier = modifier
-            .drawBehind {
-                val canvasSize = size
-                drawContext.canvas.nativeCanvas.apply {
-                    drawRoundRect(
-                        0f, // Left
-                        0f, // Top
-                        canvasSize.width, // Right
-                        canvasSize.height, // Bottom
-                        cornersRadius.toPx(), // Radius X
-                        cornersRadius.toPx(), // Radius Y
-                        Paint().apply {
-                            color = containerColor.toArgb()
-                            isAntiAlias = true
-                            setShadowLayer(
-                                glowingRadius.toPx(),
-                                xShifting.toPx(), yShifting.toPx(),
-                                glowingColor.copy(alpha = 0.2f).toArgb()
-                            )
-                        }
-                    )
-                }
-            }
+        modifier =
+            modifier
+                .drawBehind {
+                    val canvasSize = size
+                    drawContext.canvas.nativeCanvas.apply {
+                        drawRoundRect(
+                            0f, // Left
+                            0f, // Top
+                            canvasSize.width, // Right
+                            canvasSize.height, // Bottom
+                            cornersRadius.toPx(), // Radius X
+                            cornersRadius.toPx(), // Radius Y
+                            Paint().apply {
+                                color = containerColor.toArgb()
+                                isAntiAlias = true
+                                setShadowLayer(
+                                    glowingRadius.toPx(),
+                                    xShifting.toPx(),
+                                    yShifting.toPx(),
+                                    glowingColor.copy(alpha = 0.2f).toArgb(),
+                                )
+                            },
+                        )
+                    }
+                },
     ) {
         Box(modifier = modifier) {
             TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .searchBarBorder()
-                    .background(
-                        color = MaterialTheme.colorScheme.background.copy(0.9f),
-                        shape = MaterialTheme.shapes.large
-                    ),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .searchBarBorder()
+                        .background(
+                            color = MaterialTheme.colorScheme.background.copy(0.9f),
+                            shape = MaterialTheme.shapes.large,
+                        ),
                 value = text,
                 onValueChange = onValueChange,
                 readOnly = readOnly,
@@ -101,46 +104,50 @@ fun CustomSearchBar(
                     Text(
                         text = "Search for a content",
                         style = MaterialTheme.typography.bodySmall,
-                        color = colorResource(
-                            id = R.color.placeholder
-                        )
+                        color =
+                            colorResource(
+                                id = R.color.placeholder,
+                            ),
                     )
                 },
                 shape = MaterialTheme.shapes.medium,
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = containerColor,
-                    focusedContainerColor = containerColor,
-                    cursorColor = Color.White,
-                    focusedTextColor = Color.White,
-                    disabledIndicatorColor = Color.Transparent,
-                    errorIndicatorColor = Color.Transparent,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent
-                ),
+                colors =
+                    TextFieldDefaults.colors(
+                        unfocusedContainerColor = containerColor,
+                        focusedContainerColor = containerColor,
+                        cursorColor = Color.White,
+                        focusedTextColor = Color.White,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                    ),
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
-                keyboardActions = KeyboardActions(
-                    onSearch = {
-                        onSearch()
-                    }
-                ),
+                keyboardActions =
+                    KeyboardActions(
+                        onSearch = {
+                            onSearch()
+                        },
+                    ),
                 textStyle = MaterialTheme.typography.bodySmall,
                 interactionSource = interactionSource,
-
-                )
+            )
         }
     }
 }
 
-fun Modifier.searchBarBorder(): Modifier = composed {
-    this.border(
-        width = 2.dp,
-        brush = Brush.horizontalGradient(
-            colors = listOf(BlueButtonColor, PurpleButtonColor)
-        ),
-        shape = MaterialTheme.shapes.large
-    )
-}
+fun Modifier.searchBarBorder(): Modifier =
+    composed {
+        this.border(
+            width = 2.dp,
+            brush =
+                Brush.horizontalGradient(
+                    colors = listOf(BlueButtonColor, PurpleButtonColor),
+                ),
+            shape = MaterialTheme.shapes.large,
+        )
+    }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -151,9 +158,8 @@ private fun SearchBarPreview() {
             text = "",
             readOnly = false,
             onValueChange = {},
-            glowingColor = BlueButtonColor
+            glowingColor = BlueButtonColor,
         ) {
-
         }
     }
 }

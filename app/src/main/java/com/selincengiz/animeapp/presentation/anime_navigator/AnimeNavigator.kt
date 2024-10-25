@@ -36,9 +36,8 @@ fun AnimeNavigator() {
         NavHost(
             navController = navController,
             startDestination = Route.HomeScreen.route,
-            modifier = Modifier.padding(bottom = bottomPadding)
+            modifier = Modifier.padding(bottom = bottomPadding),
         ) {
-
             composable(route = Route.HomeScreen.route) {
                 val viewModel: HomeViewModel = hiltViewModel()
                 val popularTv = viewModel.popularTv.collectAsLazyPagingItems()
@@ -50,7 +49,7 @@ fun AnimeNavigator() {
                     navigateToSearch = {
                         navigateToTap(
                             navController = navController,
-                            route = Route.SearchScreen.route
+                            route = Route.SearchScreen.route,
                         )
                     },
                     navigateToDetail = { movie ->
@@ -58,7 +57,7 @@ fun AnimeNavigator() {
                     },
                     navigateToDiscover = { type ->
                         navigateToDiscover(navController = navController, type = type)
-                    }
+                    },
                 )
             }
 
@@ -72,9 +71,10 @@ fun AnimeNavigator() {
                     navigateToDetail = { movie ->
                         navigateToDetail(
                             navController = navController,
-                            movie = movie
+                            movie = movie,
                         )
-                    })
+                    },
+                )
             }
 
             composable(route = Route.DetailScreen.route) {
@@ -114,7 +114,10 @@ fun AnimeNavigator() {
     }
 }
 
-private fun navigateToTap(navController: NavController, route: String) {
+private fun navigateToTap(
+    navController: NavController,
+    route: String,
+) {
     navController.navigate(route) {
         navController.graph.startDestinationRoute?.let { homeScreen ->
             popUpTo(homeScreen) {
@@ -126,12 +129,18 @@ private fun navigateToTap(navController: NavController, route: String) {
     }
 }
 
-private fun navigateToDetail(navController: NavController, movie: TvUI) {
+private fun navigateToDetail(
+    navController: NavController,
+    movie: TvUI,
+) {
     navController.currentBackStackEntry?.savedStateHandle?.set("movie", movie)
     navController.navigate(route = Route.DetailScreen.route)
 }
 
-private fun navigateToDiscover(navController: NavController, type: String) {
+private fun navigateToDiscover(
+    navController: NavController,
+    type: String,
+) {
     navController.currentBackStackEntry?.savedStateHandle?.set("type", type)
     navController.navigate(route = Route.DiscoverScreen.route)
 }

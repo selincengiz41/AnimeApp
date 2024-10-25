@@ -10,13 +10,13 @@ import com.selincengiz.animeapp.ui.theme.WhiteGray
 @Composable
 fun CustomTextButton(
     text: String,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     TextButton(onClick = onClick) {
         Text(
             text = text,
             style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.SemiBold),
-            color = WhiteGray
+            color = WhiteGray,
         )
     }
 }

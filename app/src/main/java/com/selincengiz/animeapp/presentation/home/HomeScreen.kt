@@ -35,15 +35,15 @@ fun HomeScreen(
     onAir: LazyPagingItems<TvUI>,
     navigateToSearch: (String) -> Unit,
     navigateToDetail: (TvUI) -> Unit,
-    navigateToDiscover: (String) -> Unit
+    navigateToDiscover: (String) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(top = MediumPadding1)
-            .statusBarsPadding()
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(top = MediumPadding1)
+                .statusBarsPadding(),
     ) {
-
         Spacer(modifier = Modifier.height(ExtraSmallPadding2))
         Text(
             modifier = Modifier.padding(start = MediumPadding1),
@@ -60,7 +60,7 @@ fun HomeScreen(
             onValueChange = {},
             onClick = { navigateToSearch(Route.SearchScreen.route) },
             onSearch = {},
-            glowingColor = BlueButtonColor
+            glowingColor = BlueButtonColor,
         )
 
         Spacer(modifier = Modifier.height(ExtraSmallPadding2))
@@ -73,11 +73,11 @@ fun HomeScreen(
         )
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier =
+                Modifier
+                    .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
-
-            ) {
+        ) {
             Image(
                 modifier = Modifier.clickable { navigateToDiscover("fantasy") },
                 painter = painterResource(id = R.drawable.movie),
@@ -102,24 +102,27 @@ fun HomeScreen(
         Spacer(modifier = Modifier.height(ExtraSmallPadding2))
 
         AnimeCardList(
-            modifier = Modifier
-                .padding(horizontal = MediumPadding1)
-                .height(180.dp),
+            modifier =
+                Modifier
+                    .padding(horizontal = MediumPadding1)
+                    .height(180.dp),
             movies = popular,
             onClick = {
                 navigateToDetail(it)
-            })
+            },
+        )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
         AnimeCardList(
-            modifier = Modifier
-                .padding(horizontal = MediumPadding1)
-                .height(180.dp),
+            modifier =
+                Modifier
+                    .padding(horizontal = MediumPadding1)
+                    .height(180.dp),
             movies = onAir,
             onClick = {
                 navigateToDetail(it)
-            })
+            },
+        )
     }
 }
-

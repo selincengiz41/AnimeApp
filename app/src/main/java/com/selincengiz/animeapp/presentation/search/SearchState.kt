@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 data class SearchState(
     val searchQuery: String = "",
-    val movies: Flow<PagingData<TvUI>>? = null
+    val movies: Flow<PagingData<TvUI>>? = null,
 )

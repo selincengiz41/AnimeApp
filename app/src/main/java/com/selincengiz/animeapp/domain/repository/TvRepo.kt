@@ -18,9 +18,5 @@ interface TvRepo {
 
     fun getDiscoverFantasyTv(): Flow<PagingData<TvUI>>
 
-
-
-
-
     fun getSeekTv(query: String): Flow<PagingData<TvUI>>
 }

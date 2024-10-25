@@ -8,14 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.selincengiz.animeapp.domain.model.TvUI
-import com.selincengiz.animeapp.presentation.Dimens
 import com.selincengiz.animeapp.presentation.common.AnimeSearchCardList
-
 
 @Composable
 fun DiscoverScreen(
     state: DiscoverState,
-    navigateToDetail: (TvUI) -> Unit
+    navigateToDetail: (TvUI) -> Unit,
 ) {
     Column {
         Spacer(modifier = Modifier.height(60.dp))

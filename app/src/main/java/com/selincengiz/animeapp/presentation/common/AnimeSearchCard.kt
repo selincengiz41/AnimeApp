@@ -31,35 +31,40 @@ import com.selincengiz.animeapp.util.Constants
 fun AnimeSearchCard(
     modifier: Modifier = Modifier,
     tv: TvUI,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val context = LocalContext.current
-    Row(modifier = modifier
-        .fillMaxWidth()
-        .clickable { onClick() }) {
+    Row(
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clickable { onClick() },
+    ) {
         AsyncImage(
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.medium)
-                .size(Dimens.AnimeCardSize),
+            modifier =
+                Modifier
+                    .clip(MaterialTheme.shapes.medium)
+                    .size(Dimens.AnimeCardSize),
             placeholder = painterResource(id = R.drawable.placeholder),
             model = ImageRequest.Builder(context).data(Constants.IMAGE_URL + tv.posterPath).build(),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Column(
-            modifier=Modifier.align(Alignment.CenterVertically),
+            modifier = Modifier.align(Alignment.CenterVertically),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 text = tv.name ?: "",
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.fillMaxWidth(),
                 textAlign = TextAlign.Center,
-                color = colorResource(
-                    id = R.color.text_title
-                ),
+                color =
+                    colorResource(
+                        id = R.color.text_title,
+                    ),
             )
         }
     }
@@ -70,26 +75,26 @@ fun AnimeSearchCard(
 private fun AnimeSearchCardPreview() {
     AnimeAppTheme {
         AnimeSearchCard(
-            tv = TvUI(
-                adult = false,
-                backdropPath = "2",
-                firstAirDate = "2022",
-                genreIds = listOf(2),
-                id = 2,
-                mediaType = "2",
-                name = "Secret Wars",
-                originCountry = listOf("2"),
-                originalLanguage = "2",
-                originalName = "2",
-                overview = "2",
-                popularity = 2.0,
-                posterPath = "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
-                voteAverage = 2.0,
-                voteCount = 2,
-                false
-            )
+            tv =
+                TvUI(
+                    adult = false,
+                    backdropPath = "2",
+                    firstAirDate = "2022",
+                    genreIds = listOf(2),
+                    id = 2,
+                    mediaType = "2",
+                    name = "Secret Wars",
+                    originCountry = listOf("2"),
+                    originalLanguage = "2",
+                    originalName = "2",
+                    overview = "2",
+                    popularity = 2.0,
+                    posterPath = "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
+                    voteAverage = 2.0,
+                    voteCount = 2,
+                    false,
+                ),
         ) {
-
         }
     }
 }

@@ -10,29 +10,32 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
-    private val movieUseCase: MovieUseCase
-) : ViewModel() {
+class SearchViewModel
+    @Inject
+    constructor(
+        private val movieUseCase: MovieUseCase,
+    ) : ViewModel() {
+        private val _state = mutableStateOf(SearchState())
+        val state: State<SearchState> = _state
 
-    private val _state = mutableStateOf(SearchState())
-    val state: State<SearchState> = _state
+        fun onEvent(event: SearchEvent) {
+            when (event) {
+                is SearchEvent.UpdateSearchQuery -> {
+                    _state.value = state.value.copy(searchQuery = event.searchQuery)
+                }
 
-    fun onEvent(event: SearchEvent) {
-        when (event) {
-            is SearchEvent.UpdateSearchQuery -> {
-                _state.value = state.value.copy(searchQuery = event.searchQuery)
-            }
-
-            is SearchEvent.SearchMovies -> {
-                searchMovies()
+                is SearchEvent.SearchMovies -> {
+                    searchMovies()
+                }
             }
         }
-    }
 
-    private fun searchMovies() {
-        val movies = movieUseCase.getSeekTv(
-            query = state.value.searchQuery
-        ).cachedIn(viewModelScope)
-        _state.value = state.value.copy(movies = movies)
+        private fun searchMovies() {
+            val movies =
+                movieUseCase
+                    .getSeekTv(
+                        query = state.value.searchQuery,
+                    ).cachedIn(viewModelScope)
+            _state.value = state.value.copy(movies = movies)
+        }
     }
-}

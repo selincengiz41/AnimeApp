@@ -31,47 +31,50 @@ import com.selincengiz.animeapp.R
 import com.selincengiz.animeapp.presentation.Dimens
 import com.selincengiz.animeapp.ui.theme.AnimeAppTheme
 
-fun Modifier.shimmerEffect(cornerRadius: CornerRadius = CornerRadius(x = 12f, y = 12f)) = composed {
-    val transition = rememberInfiniteTransition(label = "shimmer effect")
-    val alpha = transition.animateFloat(
-        initialValue = 0.2f,
-        targetValue = 0.9f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1000),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "transparency of the background color"
-    ).value
-    val color = colorResource(id = R.color.shimmer).copy(alpha = alpha)
-    drawBehind {
-        drawRoundRect(
-            color = color,
-            cornerRadius = cornerRadius
-        )
+fun Modifier.shimmerEffect(cornerRadius: CornerRadius = CornerRadius(x = 12f, y = 12f)) =
+    composed {
+        val transition = rememberInfiniteTransition(label = "shimmer effect")
+        val alpha =
+            transition
+                .animateFloat(
+                    initialValue = 0.2f,
+                    targetValue = 0.9f,
+                    animationSpec =
+                        infiniteRepeatable(
+                            animation = tween(durationMillis = 1000),
+                            repeatMode = RepeatMode.Reverse,
+                        ),
+                    label = "transparency of the background color",
+                ).value
+        val color = colorResource(id = R.color.shimmer).copy(alpha = alpha)
+        drawBehind {
+            drawRoundRect(
+                color = color,
+                cornerRadius = cornerRadius,
+            )
+        }
     }
-}
-
 
 @Composable
-fun AnimeCardShimmerEffect(
-    modifier: Modifier = Modifier
-) {
+fun AnimeCardShimmerEffect(modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         Box(
-            modifier = Modifier
-                .size(Dimens.AnimeCardSize)
-                .clip(MaterialTheme.shapes.medium)
-                .shimmerEffect()
+            modifier =
+                Modifier
+                    .size(Dimens.AnimeCardSize)
+                    .clip(MaterialTheme.shapes.medium)
+                    .shimmerEffect(),
         )
 
         Spacer(modifier = modifier.height(Dimens.ExtraSmallPadding))
 
         Box(
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .width(65.dp)
-                .height(21.dp)
-                .shimmerEffect()
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .width(65.dp)
+                    .height(21.dp)
+                    .shimmerEffect(),
         )
 
         Spacer(modifier = modifier.height(Dimens.ExtraSmallPadding))
@@ -79,28 +82,29 @@ fun AnimeCardShimmerEffect(
 }
 
 @Composable
-fun AnimeSearchCardShimmerEffect(
-    modifier: Modifier = Modifier
-) {
+fun AnimeSearchCardShimmerEffect(modifier: Modifier = Modifier) {
     Row(modifier = modifier.fillMaxWidth()) {
         Box(
-            modifier = Modifier
-                .size(Dimens.AnimeCardSize)
-                .clip(MaterialTheme.shapes.medium)
-                .shimmerEffect()
+            modifier =
+                Modifier
+                    .size(Dimens.AnimeCardSize)
+                    .clip(MaterialTheme.shapes.medium)
+                    .shimmerEffect(),
         )
         Column(
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier =
+                Modifier
+                    .align(Alignment.CenterVertically)
+                    .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Box(
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .fillMaxWidth(0.7f)
-                    .height(30.dp)
-                    .shimmerEffect()
+                modifier =
+                    Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .fillMaxWidth(0.7f)
+                        .height(30.dp)
+                        .shimmerEffect(),
             )
         }
     }
@@ -112,7 +116,7 @@ fun ShimmerEffect(type: String) {
         "search" -> {
             Column(
                 verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding1),
-                modifier = Modifier.padding(start = 20.dp)
+                modifier = Modifier.padding(start = 20.dp),
             ) {
                 repeat(10) {
                     AnimeSearchCardShimmerEffect(modifier = Modifier)
@@ -123,7 +127,7 @@ fun ShimmerEffect(type: String) {
         "normal" -> {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(Dimens.MediumPadding1),
-                modifier = Modifier.padding(start = 20.dp)
+                modifier = Modifier.padding(start = 20.dp),
             ) {
                 repeat(10) {
                     AnimeCardShimmerEffect(modifier = Modifier)
@@ -142,5 +146,3 @@ private fun AnimeCardShimmerEffectPreview() {
         }
     }
 }
-
-

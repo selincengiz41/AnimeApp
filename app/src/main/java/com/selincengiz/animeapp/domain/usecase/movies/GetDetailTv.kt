@@ -4,9 +4,7 @@ import com.selincengiz.animeapp.domain.model.TvDetailUI
 import com.selincengiz.animeapp.domain.repository.TvRepo
 
 class GetDetailTv(
-    private val tvRepo: TvRepo
+    private val tvRepo: TvRepo,
 ) {
-    suspend operator fun invoke(id: Int): TvDetailUI {
-        return tvRepo.getDetailTv(id)
-    }
+    suspend operator fun invoke(id: Int): TvDetailUI = tvRepo.getDetailTv(id)
 }

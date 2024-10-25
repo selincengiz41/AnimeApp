@@ -20,20 +20,19 @@ import com.selincengiz.animeapp.presentation.common.AnimeSearchCardList
 import com.selincengiz.animeapp.presentation.common.CustomSearchBar
 import com.selincengiz.animeapp.ui.theme.BlueButtonColor
 
-
 @Composable
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigateToDetail: (TvUI) -> Unit
+    navigateToDetail: (TvUI) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .padding(
-                top = MediumPadding1,
-            )
-            .statusBarsPadding()
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .padding(
+                    top = MediumPadding1,
+                ).statusBarsPadding()
+                .fillMaxSize(),
     ) {
         Spacer(modifier = Modifier.height(Dimens.ExtraSmallPadding2))
 
@@ -53,7 +52,7 @@ fun SearchScreen(
             readOnly = false,
             onValueChange = { event(SearchEvent.UpdateSearchQuery(it)) },
             onClick = {},
-            onSearch = { event(SearchEvent.SearchMovies) }
+            onSearch = { event(SearchEvent.SearchMovies) },
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))

@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class CreatedBy(
@@ -15,5 +14,5 @@ data class CreatedBy(
     @SerializedName("original_name")
     val originalName: String?,
     @SerializedName("profile_path")
-    val profilePath: String?
+    val profilePath: String?,
 )

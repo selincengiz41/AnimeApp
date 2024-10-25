@@ -11,18 +11,16 @@ import com.selincengiz.animeapp.presentation.onboarding.OnBoardingScreen
 import com.selincengiz.animeapp.presentation.onboarding.OnBoardingViewModel
 
 @Composable
-fun NavGraph(
-    startDestination: String
-) {
+fun NavGraph(startDestination: String) {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
             route = Route.AppStartNavigation.route,
-            startDestination = Route.OnBoardingScreen.route
+            startDestination = Route.OnBoardingScreen.route,
         ) {
             composable(
-                route = Route.OnBoardingScreen.route
+                route = Route.OnBoardingScreen.route,
             ) {
                 val viewModel: OnBoardingViewModel = hiltViewModel()
                 OnBoardingScreen(event = viewModel::onEvent)
@@ -31,12 +29,11 @@ fun NavGraph(
 
         navigation(
             route = Route.AnimeNavigation.route,
-            startDestination = Route.AnimeNavigatorScreen.route
+            startDestination = Route.AnimeNavigatorScreen.route,
         ) {
             composable(route = Route.AnimeNavigatorScreen.route) {
                 AnimeNavigator()
             }
         }
     }
-
 }

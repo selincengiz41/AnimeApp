@@ -14,74 +14,63 @@ import kotlinx.coroutines.flow.Flow
 class TvRepoImpl(
     private val service: TMDBService,
 ) : TvRepo {
-    override fun getDiscoverTv(): Flow<PagingData<TvUI>> {
-        return Pager(
+    override fun getDiscoverTv(): Flow<PagingData<TvUI>> =
+        Pager(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 TvPagingSource(
                     service = service,
-                    endPoint = "getDiscoverTv"
+                    endPoint = "getDiscoverTv",
                 )
-            }
+            },
         ).flow
-    }
 
-    override fun getDiscoverFantasyTv(): Flow<PagingData<TvUI>> {
-        return Pager(
+    override fun getDiscoverFantasyTv(): Flow<PagingData<TvUI>> =
+        Pager(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 TvPagingSource(
                     service = service,
-                    endPoint = "getDiscoverFantasyTv"
+                    endPoint = "getDiscoverFantasyTv",
                 )
-            }
+            },
         ).flow
-    }
 
-
-    override fun getAirTv(): Flow<PagingData<TvUI>> {
-        return Pager(
+    override fun getAirTv(): Flow<PagingData<TvUI>> =
+        Pager(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 TvPagingSource(
                     service = service,
-                    endPoint = "getAirTv"
+                    endPoint = "getAirTv",
                 )
-            }
+            },
         ).flow
-    }
 
-    override fun getPopularTv(): Flow<PagingData<TvUI>> {
-        return Pager(
+    override fun getPopularTv(): Flow<PagingData<TvUI>> =
+        Pager(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 TvPagingSource(
                     service = service,
-                    endPoint = "getPopularTv"
+                    endPoint = "getPopularTv",
                 )
-            }
+            },
         ).flow
-    }
 
-    override suspend fun getDetailTv(id: Int): TvDetailUI {
-        return service.getDetailTv(id).mapToTvDetail()
-    }
+    override suspend fun getDetailTv(id: Int): TvDetailUI = service.getDetailTv(id).mapToTvDetail()
 
-    override suspend fun getDetailMovie(id: Int): TvDetailUI {
-        return service.getDetailMovie(id).mapToTvDetail()
-    }
+    override suspend fun getDetailMovie(id: Int): TvDetailUI = service.getDetailMovie(id).mapToTvDetail()
 
-
-    override fun getSeekTv(query: String): Flow<PagingData<TvUI>> {
-        return Pager(
+    override fun getSeekTv(query: String): Flow<PagingData<TvUI>> =
+        Pager(
             config = PagingConfig(pageSize = 10),
             pagingSourceFactory = {
                 TvPagingSource(
                     service = service,
                     endPoint = "getSeekTv",
-                    query = query
+                    query = query,
                 )
-            }
+            },
         ).flow
-    }
 }

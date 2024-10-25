@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class TvResponse(
@@ -11,5 +10,5 @@ data class TvResponse(
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_results")
-    val totalResults: Int
+    val totalResults: Int,
 )

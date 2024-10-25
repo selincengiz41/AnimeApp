@@ -13,19 +13,18 @@ import com.selincengiz.animeapp.domain.model.TvUI
 import com.selincengiz.animeapp.presentation.Dimens.ExtraSmallPadding2
 import com.selincengiz.animeapp.presentation.Dimens.MediumPadding1
 
-
 @Composable
 fun AnimeCardList(
     modifier: Modifier = Modifier,
     movies: LazyPagingItems<TvUI>,
-    onClick: (TvUI) -> Unit
+    onClick: (TvUI) -> Unit,
 ) {
     val handlePagingResult = handlePagingResult(movies = movies, "normal")
     if (handlePagingResult) {
         LazyRow(
             modifier = modifier.fillMaxSize(),
             horizontalArrangement = Arrangement.spacedBy(MediumPadding1),
-            contentPadding = PaddingValues(all = ExtraSmallPadding2)
+            contentPadding = PaddingValues(all = ExtraSmallPadding2),
         ) {
             items(count = movies.itemCount) {
                 movies[it]?.let { movie ->
@@ -40,14 +39,14 @@ fun AnimeCardList(
 fun AnimeSearchCardList(
     modifier: Modifier = Modifier,
     movies: LazyPagingItems<TvUI>,
-    onClick: (TvUI) -> Unit
+    onClick: (TvUI) -> Unit,
 ) {
     val handlePagingResult = handlePagingResult(movies = movies, "search")
     if (handlePagingResult) {
         LazyColumn(
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPadding1),
-            contentPadding = PaddingValues(all = ExtraSmallPadding2)
+            contentPadding = PaddingValues(all = ExtraSmallPadding2),
         ) {
             items(count = movies.itemCount) {
                 movies[it]?.let { movie ->
@@ -61,7 +60,7 @@ fun AnimeSearchCardList(
 @Composable
 fun handlePagingResult(
     movies: LazyPagingItems<TvUI>,
-    type: String
+    type: String,
 ): Boolean {
     val loadState = movies.loadState
     return when {
@@ -75,4 +74,3 @@ fun handlePagingResult(
         }
     }
 }
-

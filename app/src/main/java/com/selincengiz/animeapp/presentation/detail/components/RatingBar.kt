@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -27,7 +26,7 @@ fun RatingBar(
 
     Row(
         modifier = Modifier.selectableGroup(),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         for (i in 1..maxStars) {
             val isSelected = i <= rating
@@ -37,9 +36,10 @@ fun RatingBar(
                 imageVector = icon,
                 contentDescription = null,
                 tint = iconTintColor,
-                modifier = Modifier
-                    .width(starSize)
-                    .height(starSize)
+                modifier =
+                    Modifier
+                        .width(starSize)
+                        .height(starSize),
             )
             if (i < maxStars) {
                 Spacer(modifier = Modifier.width(starSpacing))

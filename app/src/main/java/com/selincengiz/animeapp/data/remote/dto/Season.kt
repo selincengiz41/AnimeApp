@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Season(
@@ -19,5 +18,5 @@ data class Season(
     @SerializedName("season_number")
     val seasonNumber: Int?,
     @SerializedName("vote_average")
-    val voteAverage: Float?
+    val voteAverage: Float?,
 )

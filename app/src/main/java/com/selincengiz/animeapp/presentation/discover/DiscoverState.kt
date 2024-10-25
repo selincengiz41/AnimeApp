@@ -5,5 +5,5 @@ import com.selincengiz.animeapp.domain.model.TvUI
 import kotlinx.coroutines.flow.Flow
 
 data class DiscoverState(
-    val discover: Flow<PagingData<TvUI>>? = null
+    val discover: Flow<PagingData<TvUI>>? = null,
 )

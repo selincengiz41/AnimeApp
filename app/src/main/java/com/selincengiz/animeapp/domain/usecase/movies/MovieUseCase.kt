@@ -7,5 +7,5 @@ data class MovieUseCase(
     val getSeekTv: GetSeekTv,
     val getPopularTv: GetPopularTv,
     val getAirTv: GetAirTv,
-    val getDetailMovie: GetDetailMovie
+    val getDetailMovie: GetDetailMovie,
 )

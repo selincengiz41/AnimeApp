@@ -29,17 +29,17 @@ import com.selincengiz.animeapp.ui.theme.AnimeAppTheme
 @Composable
 fun OnBoardingPage(
     modifier: Modifier = Modifier,
-    page: Page
+    page: Page,
 ) {
     Column(modifier = modifier) {
-
         Image(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(fraction = 0.6f),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .fillMaxHeight(fraction = 0.6f),
             painter = painterResource(id = page.image),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
@@ -49,17 +49,17 @@ fun OnBoardingPage(
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = MediumPadding2).align(Alignment.CenterHorizontally),
             style = MaterialTheme.typography.displaySmall.copy(fontWeight = FontWeight.Bold),
-            color = colorResource(id = R.color.display_small)
+            color = colorResource(id = R.color.display_small),
         )
 
         Spacer(modifier = Modifier.height(MediumPadding1))
-        
+
         Text(
             text = page.description,
             textAlign = TextAlign.Center,
             modifier = Modifier.padding(horizontal = MediumPadding2).align(Alignment.CenterHorizontally),
             style = MaterialTheme.typography.bodyMedium,
-            color = colorResource(id = R.color.text_medium)
+            color = colorResource(id = R.color.text_medium),
         )
     }
 }

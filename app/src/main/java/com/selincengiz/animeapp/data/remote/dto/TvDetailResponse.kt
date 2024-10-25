@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class TvDetailResponse(
@@ -67,5 +66,5 @@ data class TvDetailResponse(
     @SerializedName("vote_average")
     val voteAverage: Float?,
     @SerializedName("vote_count")
-    val voteCount: Int?
+    val voteCount: Int?,
 )

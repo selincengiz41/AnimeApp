@@ -10,28 +10,31 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class DiscoverViewModel @Inject constructor(
-    private val movieUseCase: MovieUseCase
-) : ViewModel() {
+class DiscoverViewModel
+    @Inject
+    constructor(
+        private val movieUseCase: MovieUseCase,
+    ) : ViewModel() {
+        private val _state = mutableStateOf(DiscoverState())
+        val state: State<DiscoverState> = _state
 
-    private val _state = mutableStateOf(DiscoverState())
-    val state: State<DiscoverState> = _state
+        fun onEvent(event: DiscoverEvent) {
+            when (event) {
+                is DiscoverEvent.GetDiscoverTv -> {
+                    val discover = movieUseCase.getDiscoverTv().cachedIn(viewModelScope)
+                    _state.value =
+                        state.value.copy(
+                            discover = discover,
+                        )
+                }
 
-    fun onEvent(event: DiscoverEvent) {
-        when (event) {
-            is DiscoverEvent.GetDiscoverTv -> {
-                val discover = movieUseCase.getDiscoverTv().cachedIn(viewModelScope)
-                _state.value = state.value.copy(
-                    discover = discover
-                )
-            }
-
-            is DiscoverEvent.GetDiscoverFantasy -> {
-                val discover = movieUseCase.getDiscoverFantasyTv().cachedIn(viewModelScope)
-                _state.value = state.value.copy(
-                    discover = discover
-                )
+                is DiscoverEvent.GetDiscoverFantasy -> {
+                    val discover = movieUseCase.getDiscoverFantasyTv().cachedIn(viewModelScope)
+                    _state.value =
+                        state.value.copy(
+                            discover = discover,
+                        )
+                }
             }
         }
     }
-}

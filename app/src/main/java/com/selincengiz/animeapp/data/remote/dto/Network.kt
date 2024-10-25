@@ -1,6 +1,5 @@
 package com.selincengiz.animeapp.data.remote.dto
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Network(
@@ -11,5 +10,5 @@ data class Network(
     @SerializedName("name")
     val name: String?,
     @SerializedName("origin_country")
-    val originCountry: String?
+    val originCountry: String?,
 )

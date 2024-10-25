@@ -34,19 +34,19 @@ import com.selincengiz.animeapp.util.Constants.IMAGE_URL
 fun AnimeCard(
     modifier: Modifier = Modifier,
     tv: TvUI,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     val context = LocalContext.current
     Column(modifier = modifier.clickable { onClick() }) {
-
         AsyncImage(
-            modifier = Modifier
-                .clip(MaterialTheme.shapes.medium)
-                .size(Dimens.AnimeCardSize),
+            modifier =
+                Modifier
+                    .clip(MaterialTheme.shapes.medium)
+                    .size(Dimens.AnimeCardSize),
             model = ImageRequest.Builder(context).data(IMAGE_URL + tv.posterPath).build(),
             placeholder = painterResource(id = R.drawable.placeholder),
             contentDescription = null,
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
 
         Spacer(modifier = modifier.height(ExtraSmallPadding))
@@ -54,15 +54,17 @@ fun AnimeCard(
         Text(
             text = tv.name ?: "",
             style = MaterialTheme.typography.bodyMedium,
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .widthIn(max = MaxText),
+            modifier =
+                Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .widthIn(max = MaxText),
             textAlign = TextAlign.Center,
-            color = colorResource(
-                id = R.color.text_title
-            ),
+            color =
+                colorResource(
+                    id = R.color.text_title,
+                ),
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
         )
 
         Spacer(modifier = modifier.height(ExtraSmallPadding))
@@ -71,14 +73,14 @@ fun AnimeCard(
             text = tv.firstAirDate.toString().split('-')[0],
             style = MaterialTheme.typography.bodyMedium,
             modifier = Modifier.align(Alignment.CenterHorizontally),
-            color = colorResource(
-                id = R.color.placeholder
-            ),
+            color =
+                colorResource(
+                    id = R.color.placeholder,
+                ),
             maxLines = 1,
-            overflow = TextOverflow.Ellipsis
+            overflow = TextOverflow.Ellipsis,
         )
     }
-
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
@@ -86,26 +88,26 @@ fun AnimeCard(
 private fun AnimeCardPreview() {
     AnimeAppTheme {
         AnimeCard(
-            tv = TvUI(
-                adult = false,
-                backdropPath = "2",
-                firstAirDate = "2022",
-                genreIds = listOf(2),
-                id = 2,
-                mediaType = "2",
-                name = "Secret Wars",
-                originCountry = listOf("2"),
-                originalLanguage = "2",
-                originalName = "2",
-                overview = "2",
-                popularity = 2.0,
-                posterPath = "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
-                voteAverage = 2.0,
-                voteCount = 2,
-                false
-            )
+            tv =
+                TvUI(
+                    adult = false,
+                    backdropPath = "2",
+                    firstAirDate = "2022",
+                    genreIds = listOf(2),
+                    id = 2,
+                    mediaType = "2",
+                    name = "Secret Wars",
+                    originCountry = listOf("2"),
+                    originalLanguage = "2",
+                    originalName = "2",
+                    overview = "2",
+                    popularity = 2.0,
+                    posterPath = "/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
+                    voteAverage = 2.0,
+                    voteCount = 2,
+                    false,
+                ),
         ) {
-
         }
     }
 }

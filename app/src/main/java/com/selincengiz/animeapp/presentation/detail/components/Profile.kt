@@ -44,52 +44,60 @@ fun Profile(people: CreatedBy) {
     val context = LocalContext.current
 
     Row(modifier = Modifier.wrapContentWidth()) {
-
         AsyncImage(
-            model = ImageRequest.Builder(context).data(Constants.IMAGE_URL + people.profilePath)
-                .error(
-                    R.drawable.ic_person
-                )
-                .build(),
+            model =
+                ImageRequest
+                    .Builder(context)
+                    .data(Constants.IMAGE_URL + people.profilePath)
+                    .error(
+                        R.drawable.ic_person,
+                    ).build(),
             contentDescription = null,
             placeholder = painterResource(id = R.drawable.ic_person),
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .shadow(elevation = 100.dp, clip = true, shape = CircleShape)
-                .clip(CircleShape)
-                .size(52.dp)
-                .border(
-                    width = 2.dp, brush = Brush.horizontalGradient(
-                        colors = listOf(BlueButtonColor, PurpleButtonColor)
+            modifier =
+                Modifier
+                    .shadow(elevation = 100.dp, clip = true, shape = CircleShape)
+                    .clip(CircleShape)
+                    .size(52.dp)
+                    .border(
+                        width = 2.dp,
+                        brush =
+                            Brush.horizontalGradient(
+                                colors = listOf(BlueButtonColor, PurpleButtonColor),
+                            ),
+                        shape = CircleShape,
                     ),
-                    shape = CircleShape
-                )
         )
 
         Box(
-            modifier = Modifier
-                .absoluteOffset(x = -20.dp, y = 2.dp)
-                .zIndex(-1f)
-                .height(48.dp)
-                .width(180.dp)
-                .border(
-                    width = 1.dp, brush = Brush.linearGradient(
-                        colors = listOf(
-                            Grey.copy(alpha = 0.0f),
-                            Grey.copy(alpha = 0.0f),
-                            Grey.copy(alpha = 0.1f),
-                            Grey.copy(alpha = 0.1f),
-                            Grey.copy(alpha = 0.2f),
-                        )
-                    ),
-                    shape = RoundedCornerShape(16.dp)
-                )
-                .background(color = Dark, shape = RoundedCornerShape(16.dp)),
+            modifier =
+                Modifier
+                    .absoluteOffset(x = -20.dp, y = 2.dp)
+                    .zIndex(-1f)
+                    .height(48.dp)
+                    .width(180.dp)
+                    .border(
+                        width = 1.dp,
+                        brush =
+                            Brush.linearGradient(
+                                colors =
+                                    listOf(
+                                        Grey.copy(alpha = 0.0f),
+                                        Grey.copy(alpha = 0.0f),
+                                        Grey.copy(alpha = 0.1f),
+                                        Grey.copy(alpha = 0.1f),
+                                        Grey.copy(alpha = 0.2f),
+                                    ),
+                            ),
+                        shape = RoundedCornerShape(16.dp),
+                    ).background(color = Dark, shape = RoundedCornerShape(16.dp)),
         ) {
             Text(
-                modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .padding(horizontal = 10.dp),
+                modifier =
+                    Modifier
+                        .align(Alignment.CenterEnd)
+                        .padding(horizontal = 10.dp),
                 textAlign = TextAlign.Center,
                 text = people.name.toString(),
                 maxLines = 2,
@@ -111,8 +119,8 @@ private fun ProfilePreview() {
                 null,
                 "Maria Espaseasfs",
                 null,
-                null
+                null,
             ),
-            )
+        )
     }
 }

@@ -1,12 +1,10 @@
 package com.selincengiz.animeapp.domain.model
 
-
 import com.selincengiz.animeapp.data.remote.dto.CreatedBy
 import com.selincengiz.animeapp.data.remote.dto.Genre
 import com.selincengiz.animeapp.data.remote.dto.Network
 import com.selincengiz.animeapp.data.remote.dto.NextEpisodeToAir
 import com.selincengiz.animeapp.data.remote.dto.Season
-
 
 data class TvDetailUI(
     val firstAirDate: String?,
@@ -26,7 +24,7 @@ data class TvDetailUI(
     val status: String?,
     val voteAverage: Float?,
     val voteCount: Int?,
-    val isFavorite:Boolean?,
+    val isFavorite: Boolean?,
     val networks: List<Network>?,
-    val createdBy :List<CreatedBy>?
+    val createdBy: List<CreatedBy>?,
 )

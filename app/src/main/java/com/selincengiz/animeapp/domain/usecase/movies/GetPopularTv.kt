@@ -6,9 +6,7 @@ import com.selincengiz.animeapp.domain.repository.TvRepo
 import kotlinx.coroutines.flow.Flow
 
 class GetPopularTv(
-    private val tvRepo: TvRepo
+    private val tvRepo: TvRepo,
 ) {
-    operator fun invoke(): Flow<PagingData<TvUI>> {
-        return tvRepo.getPopularTv()
-    }
+    operator fun invoke(): Flow<PagingData<TvUI>> = tvRepo.getPopularTv()
 }

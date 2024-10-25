@@ -5,9 +5,8 @@ import com.selincengiz.animeapp.data.remote.dto.TvDetailResponse
 import com.selincengiz.animeapp.domain.model.TvDetailUI
 import com.selincengiz.animeapp.domain.model.TvUI
 
-
-fun Tv.mapToTvUI(): TvUI {
-    return TvUI(
+fun Tv.mapToTvUI(): TvUI =
+    TvUI(
         adult,
         backdropPath,
         firstAirDate,
@@ -23,13 +22,11 @@ fun Tv.mapToTvUI(): TvUI {
         posterPath,
         voteAverage,
         voteCount,
-        false
+        false,
     )
-}
 
-
-fun TvDetailResponse.mapToTvDetail(): TvDetailUI {
-    return TvDetailUI(
+fun TvDetailResponse.mapToTvDetail(): TvDetailUI =
+    TvDetailUI(
         firstAirDate,
         genres,
         homepage,
@@ -49,8 +46,5 @@ fun TvDetailResponse.mapToTvDetail(): TvDetailUI {
         voteCount,
         false,
         networks,
-        createdBy
+        createdBy,
     )
-}
-
-

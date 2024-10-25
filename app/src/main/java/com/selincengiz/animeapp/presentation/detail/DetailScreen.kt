@@ -58,80 +58,86 @@ import com.selincengiz.animeapp.ui.theme.PurpleButtonColor
 import com.selincengiz.animeapp.util.Constants.IMAGE_URL
 
 @Composable
-fun DetailScreen(
-    movie: TvDetailUI
-) {
+fun DetailScreen(movie: TvDetailUI) {
     val context = LocalContext.current
     LazyColumn(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         item {
             AsyncImage(
                 model = ImageRequest.Builder(context).data(IMAGE_URL + movie.posterPath).build(),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillParentMaxHeight(0.45f)
-                    .drawWithContent {
-                        drawContent()
-                        drawRect(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(Color.Transparent, Dark.copy(alpha = 0.7f), Dark),
-                                startY = size.height / 2,
-                                endY = size.height
-                            ),
-                            size = size
-                        )
-                    },
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .fillParentMaxHeight(0.45f)
+                        .drawWithContent {
+                            drawContent()
+                            drawRect(
+                                brush =
+                                    Brush.verticalGradient(
+                                        colors = listOf(Color.Transparent, Dark.copy(alpha = 0.7f), Dark),
+                                        startY = size.height / 2,
+                                        endY = size.height,
+                                    ),
+                                size = size,
+                            )
+                        },
             )
             Spacer(modifier = Modifier.height(ExtraSmallPadding))
 
             Row(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .padding(horizontal = MediumPadding1)
-                    .fillMaxWidth()
+                modifier =
+                    Modifier
+                        .padding(horizontal = MediumPadding1)
+                        .fillMaxWidth(),
             ) {
                 Row(modifier = Modifier) {
                     Text(
-                        modifier = Modifier
-                            .fillParentMaxWidth(0.4f),
+                        modifier =
+                            Modifier
+                                .fillParentMaxWidth(0.4f),
                         text = movie.name ?: "",
                         style = MaterialTheme.typography.headlineMedium.copy(fontWeight = Bold),
                         color = Color.White,
                         maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                     Text(
                         text = movie.firstAirDate.toString().split('-')[0],
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier
-                            .align(Alignment.Bottom),
-                        color = colorResource(
-                            id = R.color.placeholder
-                        ),
+                        modifier =
+                            Modifier
+                                .align(Alignment.Bottom),
+                        color =
+                            colorResource(
+                                id = R.color.placeholder,
+                            ),
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 }
                 Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .padding(top = 5.dp)
-                        .align(Alignment.Top)
+                    modifier =
+                        Modifier
+                            .fillMaxHeight()
+                            .padding(top = 5.dp)
+                            .align(Alignment.Top),
                 ) {
                     RatingBar(rating = movie.voteAverage?.div(2) ?: 0.0f)
                     Text(
-                        text = "From ${movie.voteCount.toString()} users",
+                        text = "From ${movie.voteCount} users",
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.align(Alignment.CenterHorizontally),
-                        color = colorResource(
-                            id = R.color.placeholder
-                        ),
+                        color =
+                            colorResource(
+                                id = R.color.placeholder,
+                            ),
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 }
             }
@@ -139,11 +145,12 @@ fun DetailScreen(
                 text = movie.networks?.get(0)?.name ?: "",
                 style = MaterialTheme.typography.bodyMedium,
                 modifier = Modifier.padding(start = MediumPadding1),
-                color = colorResource(
-                    id = R.color.placeholder
-                ),
+                color =
+                    colorResource(
+                        id = R.color.placeholder,
+                    ),
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
 
             var maxLines by remember {
@@ -153,30 +160,31 @@ fun DetailScreen(
             Text(
                 text = movie.overview ?: "",
                 style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier
-                    .padding(horizontal = MediumPadding1)
-                    .padding(top = SmallPadding)
-                    .clickable { maxLines = !maxLines }
-                    .animateContentSize(),
-                color = colorResource(
-                    id = R.color.placeholder
-                ),
+                modifier =
+                    Modifier
+                        .padding(horizontal = MediumPadding1)
+                        .padding(top = SmallPadding)
+                        .clickable { maxLines = !maxLines }
+                        .animateContentSize(),
+                color =
+                    colorResource(
+                        id = R.color.placeholder,
+                    ),
                 maxLines = if (maxLines) 15 else 5,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
-
-
         }
         item {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
-                modifier = Modifier
-                    .padding(top = MediumPadding1)
-                    .padding(horizontal = SmallPadding)
-                    .fillMaxWidth()
-                    .height(140.dp),
+                modifier =
+                    Modifier
+                        .padding(top = MediumPadding1)
+                        .padding(horizontal = SmallPadding)
+                        .fillMaxWidth()
+                        .height(140.dp),
                 horizontalArrangement = Arrangement.spacedBy(SmallPadding),
-                verticalArrangement = Arrangement.spacedBy(SmallPadding2)
+                verticalArrangement = Arrangement.spacedBy(SmallPadding2),
             ) {
                 movie.createdBy?.let {
                     items(items = it) { createdBy ->
@@ -190,20 +198,22 @@ fun DetailScreen(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.Bottom
+                verticalAlignment = Alignment.Bottom,
             ) {
                 GlowingCard(
                     glowingColor = BlueButtonColor,
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .size(width = 211.dp, height = 42.dp)
-                        .border(
-                            width = 2.dp,
-                            brush = Brush.horizontalGradient(
-                                colors = listOf(BlueButtonColor, PurpleButtonColor)
+                    modifier =
+                        Modifier
+                            .padding(10.dp)
+                            .size(width = 211.dp, height = 42.dp)
+                            .border(
+                                width = 2.dp,
+                                brush =
+                                    Brush.horizontalGradient(
+                                        colors = listOf(BlueButtonColor, PurpleButtonColor),
+                                    ),
+                                shape = RoundedCornerShape(25.dp),
                             ),
-                            shape = RoundedCornerShape(25.dp)
-                        ),
                     cornersRadius = Int.MAX_VALUE.dp,
                     onClick = {
                         Intent(Intent.ACTION_VIEW).also {
@@ -212,15 +222,16 @@ fun DetailScreen(
                                 context.startActivity(it)
                             }
                         }
-                    }
+                    },
                 ) {
                     Text(
                         text = "Watch Now",
                         color = Color.White,
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(top = 8.dp),
-                        textAlign = TextAlign.Center
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(top = 8.dp),
+                        textAlign = TextAlign.Center,
                     )
                 }
             }
@@ -228,33 +239,34 @@ fun DetailScreen(
     }
 }
 
-
 @Preview(showBackground = true)
 @Composable
 private fun DetailScreenPreview() {
-
     AnimeAppTheme {
-        DetailScreen(movie = TvDetailUI(
-            "",
-            null,
-            "",
-            2,
-            "",
-            "",
-            "",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-        ))
+        DetailScreen(
+            movie =
+                TvDetailUI(
+                    "",
+                    null,
+                    "",
+                    2,
+                    "",
+                    "",
+                    "",
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                ),
+        )
     }
 }

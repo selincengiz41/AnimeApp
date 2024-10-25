@@ -14,8 +14,8 @@ import com.selincengiz.animeapp.domain.usecase.movies.GetDetailMovie
 import com.selincengiz.animeapp.domain.usecase.movies.GetDetailTv
 import com.selincengiz.animeapp.domain.usecase.movies.GetDiscoverFantasyTv
 import com.selincengiz.animeapp.domain.usecase.movies.GetDiscoverTv
-import com.selincengiz.animeapp.domain.usecase.movies.GetSeekTv
 import com.selincengiz.animeapp.domain.usecase.movies.GetPopularTv
+import com.selincengiz.animeapp.domain.usecase.movies.GetSeekTv
 import com.selincengiz.animeapp.domain.usecase.movies.MovieUseCase
 import dagger.Module
 import dagger.Provides
@@ -27,41 +27,34 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Provides
     @Singleton
     fun provideLocalUserManager(
-        @ApplicationContext context: Context
+        @ApplicationContext context: Context,
     ): LocalUserManager = LocalUserManagerImpl(context)
 
+    @Provides
+    @Singleton
+    fun provideAppEntryUseCase(localUserManager: LocalUserManager) =
+        AppEntryUseCase(
+            readAppEntry = ReadAppEntry(localUserManager),
+            saveAppEntry = SaveAppEntry(localUserManager),
+        )
 
     @Provides
     @Singleton
-    fun provideAppEntryUseCase(
-        localUserManager: LocalUserManager
-    ) = AppEntryUseCase(
-        readAppEntry = ReadAppEntry(localUserManager),
-        saveAppEntry = SaveAppEntry(localUserManager)
-    )
+    fun provideTvRepository(service: TMDBService): TvRepo = TvRepoImpl(service = service)
 
     @Provides
     @Singleton
-    fun provideTvRepository(
-        service: TMDBService,
-    ): TvRepo = TvRepoImpl(service = service)
-
-    @Provides
-    @Singleton
-    fun provideMovieUseCase(
-        tvRepo: TvRepo
-    ) = MovieUseCase(
-        getDetailTv = GetDetailTv(tvRepo),
-        getDiscoverFantasyTv = GetDiscoverFantasyTv(tvRepo),
-        getSeekTv = GetSeekTv(tvRepo),
-        getPopularTv = GetPopularTv(tvRepo),
-        getDiscoverTv = GetDiscoverTv(tvRepo),
-        getAirTv = GetAirTv(tvRepo),
-        getDetailMovie = GetDetailMovie(tvRepo)
-    )
-
+    fun provideMovieUseCase(tvRepo: TvRepo) =
+        MovieUseCase(
+            getDetailTv = GetDetailTv(tvRepo),
+            getDiscoverFantasyTv = GetDiscoverFantasyTv(tvRepo),
+            getSeekTv = GetSeekTv(tvRepo),
+            getPopularTv = GetPopularTv(tvRepo),
+            getDiscoverTv = GetDiscoverTv(tvRepo),
+            getAirTv = GetAirTv(tvRepo),
+            getDetailMovie = GetDetailMovie(tvRepo),
+        )
 }

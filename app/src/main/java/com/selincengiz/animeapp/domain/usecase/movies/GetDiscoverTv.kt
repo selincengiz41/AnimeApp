@@ -5,10 +5,8 @@ import com.selincengiz.animeapp.domain.model.TvUI
 import com.selincengiz.animeapp.domain.repository.TvRepo
 import kotlinx.coroutines.flow.Flow
 
-class GetDiscoverTv (
-    private val tvRepo: TvRepo
+class GetDiscoverTv(
+    private val tvRepo: TvRepo,
 ) {
-    operator fun invoke(): Flow<PagingData<TvUI>> {
-        return tvRepo.getDiscoverTv()
-    }
+    operator fun invoke(): Flow<PagingData<TvUI>> = tvRepo.getDiscoverTv()
 }

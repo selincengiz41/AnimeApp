@@ -38,38 +38,41 @@ fun GlowingCard(
     xShifting: Dp = 0.dp,
     yShifting: Dp = 0.dp,
     onClick: () -> Unit = {},
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
-        modifier = modifier
-            .drawBehind {
-                val canvasSize = size
-                drawContext.canvas.nativeCanvas.apply {
-                    drawRoundRect(
-                        0f, // Left
-                        0f, // Top
-                        canvasSize.width, // Right
-                        canvasSize.height, // Bottom
-                        cornersRadius.toPx(), // Radius X
-                        cornersRadius.toPx(), // Radius Y
-                        Paint().apply {
-                            color = containerColor.toArgb()
-                            isAntiAlias = true
-                            setShadowLayer(
-                                glowingRadius.toPx(),
-                                xShifting.toPx(), yShifting.toPx(),
-                                glowingColor.copy(alpha = 0.4f).toArgb()
-                            )
-                        }
-                    )
-                }
-            }
+        modifier =
+            modifier
+                .drawBehind {
+                    val canvasSize = size
+                    drawContext.canvas.nativeCanvas.apply {
+                        drawRoundRect(
+                            0f, // Left
+                            0f, // Top
+                            canvasSize.width, // Right
+                            canvasSize.height, // Bottom
+                            cornersRadius.toPx(), // Radius X
+                            cornersRadius.toPx(), // Radius Y
+                            Paint().apply {
+                                color = containerColor.toArgb()
+                                isAntiAlias = true
+                                setShadowLayer(
+                                    glowingRadius.toPx(),
+                                    xShifting.toPx(),
+                                    yShifting.toPx(),
+                                    glowingColor.copy(alpha = 0.4f).toArgb(),
+                                )
+                            },
+                        )
+                    }
+                },
     ) {
         Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(cornersRadius))
-                .background(Color.Transparent)
-                .clickable { onClick() }
+            modifier =
+                Modifier
+                    .clip(RoundedCornerShape(cornersRadius))
+                    .background(Color.Transparent)
+                    .clickable { onClick() },
         ) {
             content()
         }
@@ -82,25 +85,28 @@ private fun CustomButtonPreview() {
     AnimeAppTheme {
         GlowingCard(
             glowingColor = BlueButtonColor,
-            modifier = Modifier
-                .padding(10.dp)
-                .size(width = 211.dp, height = 42.dp)
-                .border(
-                    width = 2.dp,
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(BlueButtonColor, PurpleButtonColor)
+            modifier =
+                Modifier
+                    .padding(10.dp)
+                    .size(width = 211.dp, height = 42.dp)
+                    .border(
+                        width = 2.dp,
+                        brush =
+                            Brush.horizontalGradient(
+                                colors = listOf(BlueButtonColor, PurpleButtonColor),
+                            ),
+                        shape = RoundedCornerShape(25.dp),
                     ),
-                    shape = RoundedCornerShape(25.dp)
-                ),
-            cornersRadius = Int.MAX_VALUE.dp
+            cornersRadius = Int.MAX_VALUE.dp,
         ) {
             Text(
                 text = "Enter Now",
                 color = Color.White,
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(top = 8.dp),
-                textAlign = TextAlign.Center
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(top = 8.dp),
+                textAlign = TextAlign.Center,
             )
         }
     }

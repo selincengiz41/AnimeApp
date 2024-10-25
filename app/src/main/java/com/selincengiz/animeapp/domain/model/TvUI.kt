@@ -20,5 +20,5 @@ data class TvUI(
     val posterPath: String?,
     val voteAverage: Double?,
     val voteCount: Int?,
-    val isFavorite: Boolean?
+    val isFavorite: Boolean?,
 ) : Parcelable

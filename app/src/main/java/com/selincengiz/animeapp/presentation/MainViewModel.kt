@@ -14,25 +14,29 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    private val appEntryUseCase: AppEntryUseCase
-) : ViewModel() {
+class MainViewModel
+    @Inject
+    constructor(
+        private val appEntryUseCase: AppEntryUseCase,
+    ) : ViewModel() {
+        var splashCondition by mutableStateOf(true)
+            private set
 
-    var splashCondition by mutableStateOf(true)
-        private set
+        var startDestination by mutableStateOf(Route.AppStartNavigation.route)
+            private set
 
-    var startDestination by mutableStateOf(Route.AppStartNavigation.route)
-        private set
-
-    init {
-        appEntryUseCase.readAppEntry().onEach { shouldStartFromHomeScreen ->
-            startDestination = if (shouldStartFromHomeScreen) {
-                Route.AnimeNavigation.route
-            } else {
-                Route.AppStartNavigation.route
-            }
-            delay(300)
-            splashCondition = false
-        }.launchIn(viewModelScope)
+        init {
+            appEntryUseCase
+                .readAppEntry()
+                .onEach { shouldStartFromHomeScreen ->
+                    startDestination =
+                        if (shouldStartFromHomeScreen) {
+                            Route.AnimeNavigation.route
+                        } else {
+                            Route.AppStartNavigation.route
+                        }
+                    delay(300)
+                    splashCondition = false
+                }.launchIn(viewModelScope)
+        }
     }
-}
