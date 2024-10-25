@@ -23,6 +23,7 @@ interface TvRepo {
 
 
 
+
     suspend fun getDetailTv(id: Int): TvDetailUI
 
     suspend fun getDetailMovie(id: Int): TvDetailUI
