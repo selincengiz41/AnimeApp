@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.selincengiz.animeapp.domain.model.TvDetailUI
 import com.selincengiz.animeapp.domain.model.TvUI
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.android.awaitFrame
 
 
 interface TvRepo {
@@ -12,12 +13,6 @@ interface TvRepo {
     fun getAirTv(): Flow<PagingData<TvUI>>
 
     fun getPopularTv(): Flow<PagingData<TvUI>>
-
-
-
-
-
-
 
 
     suspend fun getDetailTv(id: Int): TvDetailUI
